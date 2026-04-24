@@ -4608,7 +4608,7 @@ class PipelineStep:
         """The underlying object reference handle."""
         return self._handle
 
-    @_uncached_property
+    @_cached_property
     def name(self) -> str:
         """Gets the unique name of the step"""
         result = self._client.invoke_capability(
@@ -4617,15 +4617,7 @@ class PipelineStep:
         )
         return typing.cast(str, result)
 
-    @name.setter
-    def name(self, value: str) -> None:
-        """Gets the unique name of the step"""
-        self._client.invoke_capability(
-            'Aspire.Hosting.Pipelines/PipelineStep.setName',
-            {'context': self._handle, 'value': value}
-        )
-
-    @_uncached_property
+    @_cached_property
     def description(self) -> str:
         """Gets the human-readable description of the step"""
         result = self._client.invoke_capability(
@@ -4633,14 +4625,6 @@ class PipelineStep:
             {'context': self._handle}
         )
         return typing.cast(str, result)
-
-    @description.setter
-    def description(self, value: str) -> None:
-        """Gets the human-readable description of the step"""
-        self._client.invoke_capability(
-            'Aspire.Hosting.Pipelines/PipelineStep.setDescription',
-            {'context': self._handle, 'value': value}
-        )
 
     def depends_on(self, step_name: str) -> None:
         """Adds a dependency on another step by name"""

@@ -1,4 +1,4 @@
-﻿// ===== AddConnectionStringOptions.java =====
+// ===== AddConnectionStringOptions.java =====
 // AddConnectionStringOptions.java - GENERATED CODE - DO NOT EDIT
 
 package aspire;
@@ -14030,27 +14030,11 @@ public class PipelineStep extends HandleWrapperBase {
         return (String) getClient().invokeCapability("Aspire.Hosting.Pipelines/PipelineStep.name", reqArgs);
     }
 
-    /** Gets the unique name of the step */
-    public PipelineStep setName(String value) {
-        Map<String, Object> reqArgs = new HashMap<>();
-        reqArgs.put("context", AspireClient.serializeValue(getHandle()));
-        reqArgs.put("value", AspireClient.serializeValue(value));
-        return (PipelineStep) getClient().invokeCapability("Aspire.Hosting.Pipelines/PipelineStep.setName", reqArgs);
-    }
-
     /** Gets the human-readable description of the step */
     public String description() {
         Map<String, Object> reqArgs = new HashMap<>();
         reqArgs.put("context", AspireClient.serializeValue(getHandle()));
         return (String) getClient().invokeCapability("Aspire.Hosting.Pipelines/PipelineStep.description", reqArgs);
-    }
-
-    /** Gets the human-readable description of the step */
-    public PipelineStep setDescription(String value) {
-        Map<String, Object> reqArgs = new HashMap<>();
-        reqArgs.put("context", AspireClient.serializeValue(getHandle()));
-        reqArgs.put("value", AspireClient.serializeValue(value));
-        return (PipelineStep) getClient().invokeCapability("Aspire.Hosting.Pipelines/PipelineStep.setDescription", reqArgs);
     }
 
     /** Adds a dependency on another step by name */

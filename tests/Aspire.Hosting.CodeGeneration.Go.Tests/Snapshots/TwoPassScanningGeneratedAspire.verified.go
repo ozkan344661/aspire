@@ -12337,19 +12337,6 @@ func (s *PipelineStep) Name() (*string, error) {
 	return result.(*string), nil
 }
 
-// SetName gets the unique name of the step
-func (s *PipelineStep) SetName(value string) (*PipelineStep, error) {
-	reqArgs := map[string]any{
-		"context": SerializeValue(s.Handle()),
-	}
-	reqArgs["value"] = SerializeValue(value)
-	result, err := s.Client().InvokeCapability("Aspire.Hosting.Pipelines/PipelineStep.setName", reqArgs)
-	if err != nil {
-		return nil, err
-	}
-	return result.(*PipelineStep), nil
-}
-
 // Description gets the human-readable description of the step
 func (s *PipelineStep) Description() (*string, error) {
 	reqArgs := map[string]any{
@@ -12360,19 +12347,6 @@ func (s *PipelineStep) Description() (*string, error) {
 		return nil, err
 	}
 	return result.(*string), nil
-}
-
-// SetDescription gets the human-readable description of the step
-func (s *PipelineStep) SetDescription(value string) (*PipelineStep, error) {
-	reqArgs := map[string]any{
-		"context": SerializeValue(s.Handle()),
-	}
-	reqArgs["value"] = SerializeValue(value)
-	result, err := s.Client().InvokeCapability("Aspire.Hosting.Pipelines/PipelineStep.setDescription", reqArgs)
-	if err != nil {
-		return nil, err
-	}
-	return result.(*PipelineStep), nil
 }
 
 // DependsOn adds a dependency on another step by name

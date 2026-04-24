@@ -11300,32 +11300,12 @@ impl PipelineStep {
         Ok(serde_json::from_value(result)?)
     }
 
-    /// Gets the unique name of the step
-    pub fn set_name(&self, value: &str) -> Result<PipelineStep, Box<dyn std::error::Error>> {
-        let mut args: HashMap<String, Value> = HashMap::new();
-        args.insert("context".to_string(), self.handle.to_json());
-        args.insert("value".to_string(), serde_json::to_value(&value).unwrap_or(Value::Null));
-        let result = self.client.invoke_capability("Aspire.Hosting.Pipelines/PipelineStep.setName", args)?;
-        let handle: Handle = serde_json::from_value(result)?;
-        Ok(PipelineStep::new(handle, self.client.clone()))
-    }
-
     /// Gets the human-readable description of the step
     pub fn description(&self) -> Result<String, Box<dyn std::error::Error>> {
         let mut args: HashMap<String, Value> = HashMap::new();
         args.insert("context".to_string(), self.handle.to_json());
         let result = self.client.invoke_capability("Aspire.Hosting.Pipelines/PipelineStep.description", args)?;
         Ok(serde_json::from_value(result)?)
-    }
-
-    /// Gets the human-readable description of the step
-    pub fn set_description(&self, value: &str) -> Result<PipelineStep, Box<dyn std::error::Error>> {
-        let mut args: HashMap<String, Value> = HashMap::new();
-        args.insert("context".to_string(), self.handle.to_json());
-        args.insert("value".to_string(), serde_json::to_value(&value).unwrap_or(Value::Null));
-        let result = self.client.invoke_capability("Aspire.Hosting.Pipelines/PipelineStep.setDescription", args)?;
-        let handle: Handle = serde_json::from_value(result)?;
-        Ok(PipelineStep::new(handle, self.client.clone()))
     }
 
     /// Adds a dependency on another step by name

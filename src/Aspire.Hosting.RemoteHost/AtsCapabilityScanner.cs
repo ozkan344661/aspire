@@ -1206,7 +1206,7 @@ public static class AtsCapabilityScanner
                         CapabilityId = setCapabilityId,
                         MethodName = setMethodName,
                         OwningTypeName = typeName,
-                        Description = memberExportAttr?.Description ?? $"Sets the {property.Name} property",
+                        Description = $"Sets the {property.Name} property",
                         Parameters = [
                            new AtsParameterInfo
                             {

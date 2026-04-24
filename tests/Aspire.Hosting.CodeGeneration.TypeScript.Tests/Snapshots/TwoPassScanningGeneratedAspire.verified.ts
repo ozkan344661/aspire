@@ -3521,20 +3521,16 @@ class PipelineEditorPromiseImpl implements PipelineEditorPromise {
 
 export interface PipelineStep {
     toJSON(): MarshalledHandle;
-    name: {
-        get: () => Promise<string>;
-        set: (value: string) => Promise<void>;
-    };
-    description: {
-        get: () => Promise<string>;
-        set: (value: string) => Promise<void>;
-    };
+    name(): Promise<string>;
+    description(): Promise<string>;
     dependsOn(stepName: string): PipelineStepPromise;
     requiredBy(stepName: string): PipelineStepPromise;
     addTag(tag: string): PipelineStepPromise;
 }
 
 export interface PipelineStepPromise extends PromiseLike<PipelineStep> {
+    name(): Promise<string>;
+    description(): Promise<string>;
     dependsOn(stepName: string): PipelineStepPromise;
     requiredBy(stepName: string): PipelineStepPromise;
     addTag(tag: string): PipelineStepPromise;
@@ -3554,36 +3550,20 @@ class PipelineStepImpl implements PipelineStep {
     toJSON(): MarshalledHandle { return this._handle.toJSON(); }
 
     /** Gets the unique name of the step */
-    name = {
-        get: async (): Promise<string> => {
-            return await this._client.invokeCapability<string>(
-                'Aspire.Hosting.Pipelines/PipelineStep.name',
-                { context: this._handle }
-            );
-        },
-        set: async (value: string): Promise<void> => {
-            await this._client.invokeCapability<void>(
-                'Aspire.Hosting.Pipelines/PipelineStep.setName',
-                { context: this._handle, value }
-            );
-        }
-    };
+    async name(): Promise<string> {
+        return await this._client.invokeCapability<string>(
+            'Aspire.Hosting.Pipelines/PipelineStep.name',
+            { context: this._handle }
+        );
+    }
 
     /** Gets the human-readable description of the step */
-    description = {
-        get: async (): Promise<string> => {
-            return await this._client.invokeCapability<string>(
-                'Aspire.Hosting.Pipelines/PipelineStep.description',
-                { context: this._handle }
-            );
-        },
-        set: async (value: string): Promise<void> => {
-            await this._client.invokeCapability<void>(
-                'Aspire.Hosting.Pipelines/PipelineStep.setDescription',
-                { context: this._handle, value }
-            );
-        }
-    };
+    async description(): Promise<string> {
+        return await this._client.invokeCapability<string>(
+            'Aspire.Hosting.Pipelines/PipelineStep.description',
+            { context: this._handle }
+        );
+    }
 
     /** Adds a dependency on another step by name */
     /** @internal */
@@ -3645,6 +3625,16 @@ class PipelineStepPromiseImpl implements PipelineStepPromise {
         onrejected?: ((reason: unknown) => TResult2 | PromiseLike<TResult2>) | null
     ): PromiseLike<TResult1 | TResult2> {
         return this._promise.then(onfulfilled, onrejected);
+    }
+
+    /** Gets the unique name of the step */
+    name(): Promise<string> {
+        return this._promise.then(obj => obj.name());
+    }
+
+    /** Gets the human-readable description of the step */
+    description(): Promise<string> {
+        return this._promise.then(obj => obj.description());
     }
 
     /** Adds a dependency on another step by name */
