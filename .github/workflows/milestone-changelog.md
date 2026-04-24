@@ -161,6 +161,9 @@ numbers in the entry, e.g. `(#1234) ⚠️ 📝`.
 
 ### 5c. Write name and description
 
+- **Emoji**: Choose a single emoji that represents the change. Pick something specific
+  and evocative — avoid reusing the area emoji. Examples: 🧭 for navigation, 🚀 for
+  performance, 🔒 for security, 🌐 for networking, 🗂️ for configuration.
 - **Name**: A short, user-friendly name for the change. Rewrite the PR title if needed
   for clarity — do not use it verbatim unless it is already clear.
 - **Description**: One to two sentences describing the change from an end-user
@@ -215,24 +218,35 @@ Use this exact format:
 
 #### New features
 
-- **Feature name** - Brief user-facing description (#1234, #1235) ⚠️ 📝
-- **Another feature** - What this means for users (#1236) 📝
+- **🧭 Feature name**
+  Brief user-facing description
+  (#1234, #1235) ⚠️ 📝
+
+- **🚀 Another feature**
+  What this means for users
+  (#1236) 📝
 
 #### Improvements
 
-- **Performance boost** - Faster startup for container resources (#1238)
+- **⚡ Performance boost**
+  Faster startup for container resources
+  (#1238)
 
 ## ⌨️ CLI
 
 #### Bug fixes
 
-- **Fix crash on init** - Resolved a crash when running aspire init in an empty directory (#1239) ⚠️
+- **🔧 Fix crash on init**
+  Resolved a crash when running aspire init in an empty directory
+  (#1239) ⚠️
 
 ## 📊 Dashboard
 
 #### Improvements
 
-- **Dashboard improvement** - Description of the change (#1237)
+- **🎨 Dashboard improvement**
+  Description of the change
+  (#1237)
 
 ---
 
