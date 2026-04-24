@@ -139,7 +139,7 @@ If a PR does not clearly fit any specific area, classify it as **Other**.
 | **Testing** | 🧪 | `src/Aspire.Hosting.Testing/`, label contains "testing" |
 | **Other** | 📦 | Changes that don't fit any of the above areas |
 
-### 5b. Determine change type
+### 5b. Determine change type and flags
 
 Classify each PR into exactly **one** change type:
 
@@ -148,7 +148,16 @@ Classify each PR into exactly **one** change type:
 | **New features** | New capability, new resource type, new integration, new command |
 | **Improvements** | Enhancement to existing functionality, performance improvement, UX improvement |
 | **Bug fixes** | Fix for incorrect behavior, crash fix, regression fix |
-| **Breaking changes** | Removed or renamed API, changed default behavior, migration required |
+
+Then determine whether either of these optional flags applies:
+
+| Flag | Emoji | When to set |
+|------|-------|-------------|
+| **Breaking change** | ⚠️ | Removed or renamed API, changed default behavior, migration required |
+| **Docs required** | 📝 | Change needs documentation on aspire.dev (new feature, changed behavior, new config options) |
+
+A change can have zero, one, or both flags. Append the flag emoji(s) after the PR
+numbers in the entry, e.g. `(#1234) ⚠️ 📝`.
 
 ### 5c. Write name and description
 
@@ -190,7 +199,7 @@ Apply all editorial feedback from Step 4.
 
 Sort entries alphabetically by name within each change type sub-section.
 Group areas alphabetically. Within each area, order change types as:
-**Breaking changes** → **New features** → **Improvements** → **Bug fixes**.
+**New features** → **Improvements** → **Bug fixes**.
 Only include change type sub-headings that have at least one entry.
 Only include area sections that have at least one entry.
 
@@ -206,8 +215,8 @@ Use this exact format:
 
 #### New features
 
-- **Feature name** - Brief user-facing description (#1234, #1235)
-- **Another feature** - What this means for users (#1236)
+- **Feature name** - Brief user-facing description (#1234, #1235) ⚠️ 📝
+- **Another feature** - What this means for users (#1236) 📝
 
 #### Improvements
 
@@ -217,7 +226,7 @@ Use this exact format:
 
 #### Bug fixes
 
-- **Fix crash on init** - Resolved a crash when running aspire init in an empty directory (#1239)
+- **Fix crash on init** - Resolved a crash when running aspire init in an empty directory (#1239) ⚠️
 
 ## 📊 Dashboard
 
