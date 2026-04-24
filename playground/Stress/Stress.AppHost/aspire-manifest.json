@@ -10,6 +10,25 @@
         }
       }
     },
+    "api-key": {
+      "type": "parameter.v0",
+      "value": "{api-key.inputs.value}",
+      "inputs": {
+        "value": {
+          "type": "string",
+          "secret": true
+        }
+      }
+    },
+    "db-connection-string": {
+      "type": "parameter.v0",
+      "value": "{db-connection-string.inputs.value}",
+      "inputs": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
     "hiddenContainer": {
       "type": "container.v0",
       "image": "alpine:latest"
@@ -22,6 +41,8 @@
         "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true",
         "HTTP_PORTS": "{stress-apiservice.bindings.http.targetPort};{stress-apiservice.bindings.http-5181.targetPort};{stress-apiservice.bindings.http-5182.targetPort};{stress-apiservice.bindings.http-5183.targetPort};{stress-apiservice.bindings.http-5184.targetPort};{stress-apiservice.bindings.http-5185.targetPort};{stress-apiservice.bindings.http-5186.targetPort};{stress-apiservice.bindings.http-5187.targetPort};{stress-apiservice.bindings.http-5188.targetPort};{stress-apiservice.bindings.http-5189.targetPort};{stress-apiservice.bindings.http-5190.targetPort};{stress-apiservice.bindings.http-5191.targetPort};{stress-apiservice.bindings.http-5192.targetPort};{stress-apiservice.bindings.http-5193.targetPort};{stress-apiservice.bindings.http-5194.targetPort};{stress-apiservice.bindings.http-5195.targetPort};{stress-apiservice.bindings.http-5196.targetPort};{stress-apiservice.bindings.http-5197.targetPort};{stress-apiservice.bindings.http-5198.targetPort};{stress-apiservice.bindings.http-5199.targetPort};{stress-apiservice.bindings.http-5200.targetPort};{stress-apiservice.bindings.http-5201.targetPort};{stress-apiservice.bindings.http-5202.targetPort};{stress-apiservice.bindings.http-5203.targetPort};{stress-apiservice.bindings.http-5204.targetPort};{stress-apiservice.bindings.http-5205.targetPort};{stress-apiservice.bindings.http-5206.targetPort};{stress-apiservice.bindings.http-5207.targetPort};{stress-apiservice.bindings.http-5208.targetPort};{stress-apiservice.bindings.http-5209.targetPort};{stress-apiservice.bindings.http-5210.targetPort}",
         "OTEL_DOTNET_EXPERIMENTAL_METRICS_EMIT_OVERFLOW_ATTRIBUTE": "true",
+        "API_KEY": "{api-key.value}",
+        "DB_CONNECTION_STRING": "{db-connection-string.value}",
         "HOST": "{stress-apiservice.bindings.http.host}",
         "PORT": "{stress-apiservice.bindings.http.port}",
         "URL": "{stress-apiservice.bindings.http.url}"
