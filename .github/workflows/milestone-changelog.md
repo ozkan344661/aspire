@@ -139,14 +139,25 @@ If a PR does not clearly fit any specific area, classify it as **Other**.
 | **Testing** | 🧪 | `src/Aspire.Hosting.Testing/`, label contains "testing" |
 | **Other** | 📦 | Changes that don't fit any of the above areas |
 
-### 5b. Write name and description
+### 5b. Determine change type
+
+Classify each PR into exactly **one** change type:
+
+| Change type | Signals |
+|-------------|----------|
+| **New features** | New capability, new resource type, new integration, new command |
+| **Improvements** | Enhancement to existing functionality, performance improvement, UX improvement |
+| **Bug fixes** | Fix for incorrect behavior, crash fix, regression fix |
+| **Breaking changes** | Removed or renamed API, changed default behavior, migration required |
+
+### 5c. Write name and description
 
 - **Name**: A short, user-friendly name for the change. Rewrite the PR title if needed
   for clarity — do not use it verbatim unless it is already clear.
 - **Description**: One to two sentences describing the change from an end-user
   perspective. Focus on *what* changed and *why* it matters.
 
-### 5c. Group related PRs
+### 5d. Group related PRs
 
 If multiple PRs represent the same logical change (e.g., a feature spread across
 several PRs), combine them into **one** changelog entry listing all related PR numbers.
@@ -159,7 +170,7 @@ new one:
   (e.g., new capabilities, platform support, configuration options).
 - Keep the description concise — add detail, don't repeat what's already there.
 
-### 5d. Filtering rules
+### 5e. Filtering rules
 
 - **Include**: new features, notable bug fixes, breaking changes, performance
   improvements, new integrations, new resource types, and notable engineering or
@@ -177,7 +188,10 @@ from Step 5. When a new PR relates to an existing entry, update that entry in-pl
 (append the PR number and refine the description) instead of creating a duplicate row.
 Apply all editorial feedback from Step 4.
 
-Sort entries alphabetically by name within each area. Group areas alphabetically.
+Sort entries alphabetically by name within each change type sub-section.
+Group areas alphabetically. Within each area, order change types as:
+**Breaking changes** → **New features** → **Improvements** → **Bug fixes**.
+Only include change type sub-headings that have at least one entry.
 Only include area sections that have at least one entry.
 
 Use this exact format:
@@ -190,13 +204,24 @@ Use this exact format:
 
 ## 🏗️ AppHost
 
+#### New features
+
 - **Feature name** - Brief user-facing description (#1234, #1235)
+- **Another feature** - What this means for users (#1236)
+
+#### Improvements
+
+- **Performance boost** - Faster startup for container resources (#1238)
 
 ## ⌨️ CLI
 
-- **Another change** - What this means for users (#1236)
+#### Bug fixes
+
+- **Fix crash on init** - Resolved a crash when running aspire init in an empty directory (#1239)
 
 ## 📊 Dashboard
+
+#### Improvements
 
 - **Dashboard improvement** - Description of the change (#1237)
 
