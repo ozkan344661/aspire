@@ -342,8 +342,8 @@ await container.withPipelineConfiguration(async (configContext) => {
     const allSteps = await configPipeline.steps();
     const taggedSteps = await configPipeline.stepsByTag("custom-build");
 
-    const _stepName: string = await allSteps[0].name.get();
-    const _description: string = await allSteps[0].description.get();
+    const _stepName: string = await allSteps[0].name();
+    const _description: string = await allSteps[0].description();
 
     await allSteps[0].addTag("validated");
     await allSteps[0].dependsOn("restore");
