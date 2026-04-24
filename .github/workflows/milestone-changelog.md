@@ -234,14 +234,14 @@ Use this exact format:
 
 - **🚀 Another feature**
   What this means for users
-  (#1236)
+  Changes (#1236)
   📝 **Documentation required**
 
 #### Improvements
 
 - **⚡ Performance boost**
   Faster startup for container resources
-  (#1238)
+  Changes (#1238)
 
 ## ⌨️ CLI
 
@@ -249,7 +249,7 @@ Use this exact format:
 
 - **🔧 Fix crash on init**
   Resolved a crash when running aspire init in an empty directory
-  (#1239)
+  Changes (#1239)
   ⚠️ **Breaking change**
 
 ## 📊 Dashboard
