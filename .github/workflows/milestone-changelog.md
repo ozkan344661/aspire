@@ -156,8 +156,16 @@ Then determine whether either of these optional flags applies:
 | **Breaking change** | ⚠️ | Removed or renamed API, changed default behavior, migration required |
 | **Docs required** | 📝 | Change needs documentation on aspire.dev (new feature, changed behavior, new config options) |
 
-A change can have zero, one, or both flags. Append the flag emoji(s) after the PR
-numbers in the entry, e.g. `(#1234) ⚠️ 📝`.
+A change can have zero, one, or both flags. When present, show each flag on its own
+indented line below the PR numbers:
+
+```
+  (#1234)
+  ⚠️ **Breaking change**
+  📝 **Documentation required**
+```
+
+Omit flag lines entirely when neither flag applies.
 
 ### 5c. Write name and description
 
@@ -220,11 +228,14 @@ Use this exact format:
 
 - **🧭 Feature name**
   Brief user-facing description
-  (#1234, #1235) ⚠️ 📝
+  Changes #1234, #1235
+  ⚠️ **Breaking change**
+  📝 **Documentation required**
 
 - **🚀 Another feature**
   What this means for users
-  (#1236) 📝
+  (#1236)
+  📝 **Documentation required**
 
 #### Improvements
 
@@ -238,7 +249,8 @@ Use this exact format:
 
 - **🔧 Fix crash on init**
   Resolved a crash when running aspire init in an empty directory
-  (#1239) ⚠️
+  (#1239)
+  ⚠️ **Breaking change**
 
 ## 📊 Dashboard
 
