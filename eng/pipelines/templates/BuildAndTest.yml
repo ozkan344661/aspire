@@ -92,7 +92,7 @@ steps:
               /p:BuildExtension=true
       displayName: 🟣Build
 
-    # Verify the signed win-x64 CLI archive works (version check + project creation)
+    # Verify the signed win-x64 CLI archive works (version check + starter/AppHost template smokes)
     - pwsh: |
         $ErrorActionPreference = 'Stop'
         $archiveDir = "${{ parameters.repoArtifactsPath }}/packages/${{ parameters.buildConfig }}"
@@ -107,7 +107,7 @@ steps:
           Write-Host "##[error]CLI archive verification failed"
           exit 1
         }
-      displayName: 🟣Verify CLI archive (win-x64)
+      displayName: 🟣Verify CLI archive and template smokes (win-x64)
       condition: succeeded()
       env:
         ASPIRE_CLI_TELEMETRY_OPTOUT: 'true'
