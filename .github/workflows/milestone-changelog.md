@@ -246,9 +246,23 @@ Use the area emoji and name as the link text, and GitHub’s auto-generated head
 anchor as the target. Emoji headings produce anchors with a leading hyphen, e.g.
 `- [🏗️ AppHost](#-apphost)`.
 
+After the Table of Contents, add a **What's New** section that lists only **new
+features** whose most recent associated PR was merged within the **last 7 days**
+(relative to the current run time). Each item is a single link line using the format:
+`- [<date> - <Area> - <Name>](#<last-pr-number>)`
+where `<date>` is the merge date of the last PR in `YYYY-M-D` format (no leading
+zeroes on month/day), `<Area>` is the area name, and `<last-pr-number>` is the
+number of the last PR associated with the entry (without `#`). Omit the What's New
+section entirely if there are no new features in the last 7 days.
+
 Under each area heading, add a one-line **summary** counting the entries per change
 type, e.g. `2 new features, 1 improvement` or `3 bug fixes`. Use singular form
 for counts of 1 (`1 new feature`, `1 bug fix`, `1 improvement`).
+
+Each changelog entry must include an HTML anchor `<a name="<last-pr-number>"></a>`
+immediately after the bold title line (on the same line), where `<last-pr-number>`
+is the number of the last PR associated with the entry (without `#`). This enables
+the What's New section to link directly to individual entries.
 
 Use this exact format:
 
@@ -264,26 +278,31 @@ Use this exact format:
 - [⌨️ CLI](#-cli)
 - [📊 Dashboard](#-dashboard)
 
+## What's New
+
+- [2026-4-22 - AppHost - Feature name](#1235)
+- [2026-4-23 - AppHost - Another feature](#1236)
+
 ## 🏗️ AppHost
 
 2 new features, 1 improvement
 
 #### New features
 
-- **🧭 Feature name**
+- **🧭 Feature name** <a name="1235"></a>
   Brief user-facing description
   Changes: #1234, #1235
   ⚠️ **Breaking change**
   📝 **Documentation required**
 
-- **🚀 Another feature**
+- **🚀 Another feature** <a name="1236"></a>
   What this means for users
   Changes: #1236
   📝 **Documentation required**
 
 #### Improvements
 
-- **⚡ Performance boost**
+- **⚡ Performance boost** <a name="1238"></a>
   Faster startup for container resources
   Changes: #1238
 
@@ -293,7 +312,7 @@ Use this exact format:
 
 #### Bug fixes
 
-- **🔧 Fix crash on init**
+- **🔧 Fix crash on init** <a name="1239"></a>
   Resolved a crash when running aspire init in an empty directory
   Changes: #1239
   ⚠️ **Breaking change**
@@ -304,7 +323,7 @@ Use this exact format:
 
 #### Improvements
 
-- **🎨 Dashboard improvement**
+- **🎨 Dashboard improvement** <a name="1237"></a>
   Description of the change
   Changes: #1237
 
