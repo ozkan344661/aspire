@@ -1,4 +1,4 @@
-// ===== AddConnectionStringOptions.java =====
+﻿// ===== AddConnectionStringOptions.java =====
 // AddConnectionStringOptions.java - GENERATED CODE - DO NOT EDIT
 
 package aspire;
@@ -16591,6 +16591,30 @@ public class ResourceUrlsEditor extends HandleWrapperBase {
             reqArgs.put("displayText", AspireClient.serializeValue(displayText));
         }
         getClient().invokeCapability("Aspire.Hosting.ApplicationModel/ResourceUrlsEditor.add", reqArgs);
+    }
+
+    public void addForEndpoint(EndpointReference endpoint, String url, String displayText) {
+        addForEndpoint(endpoint, AspireUnion.of(url), displayText);
+    }
+
+    public void addForEndpoint(EndpointReference endpoint, ReferenceExpression url, String displayText) {
+        addForEndpoint(endpoint, AspireUnion.of(url), displayText);
+    }
+
+    public void addForEndpoint(EndpointReference endpoint, AspireUnion url) {
+        addForEndpoint(endpoint, url, null);
+    }
+
+    /** Adds a displayed URL for a specific endpoint */
+    public void addForEndpoint(EndpointReference endpoint, AspireUnion url, String displayText) {
+        Map<String, Object> reqArgs = new HashMap<>();
+        reqArgs.put("context", AspireClient.serializeValue(getHandle()));
+        reqArgs.put("endpoint", AspireClient.serializeValue(endpoint));
+        reqArgs.put("url", AspireClient.serializeValue(url));
+        if (displayText != null) {
+            reqArgs.put("displayText", AspireClient.serializeValue(displayText));
+        }
+        getClient().invokeCapability("Aspire.Hosting.ApplicationModel/ResourceUrlsEditor.addForEndpoint", reqArgs);
     }
 
 }

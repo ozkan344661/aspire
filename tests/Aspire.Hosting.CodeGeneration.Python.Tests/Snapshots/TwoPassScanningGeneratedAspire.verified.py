@@ -5288,6 +5288,18 @@ class ResourceUrlsEditor:
             rpc_args
         )
 
+    def add_for_endpoint(self, endpoint: EndpointReference, url: str | ReferenceExpression, *, display_text: str | None = None) -> None:
+        """Adds a displayed URL for a specific endpoint"""
+        rpc_args: dict[str, typing.Any] = {'context': self._handle}
+        rpc_args['endpoint'] = endpoint
+        rpc_args['url'] = url
+        if display_text is not None:
+            rpc_args['displayText'] = display_text
+        self._client.invoke_capability(
+            'Aspire.Hosting.ApplicationModel/ResourceUrlsEditor.addForEndpoint',
+            rpc_args
+        )
+
 
 class TestCallbackContext:
     """Type class for TestCallbackContext."""

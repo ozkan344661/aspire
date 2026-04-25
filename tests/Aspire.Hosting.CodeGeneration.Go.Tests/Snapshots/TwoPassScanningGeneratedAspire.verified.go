@@ -14574,6 +14574,20 @@ func (s *ResourceUrlsEditor) Add(url any, displayText *string) error {
 	return err
 }
 
+// AddForEndpoint adds a displayed URL for a specific endpoint
+func (s *ResourceUrlsEditor) AddForEndpoint(endpoint *EndpointReference, url any, displayText *string) error {
+	reqArgs := map[string]any{
+		"context": SerializeValue(s.Handle()),
+	}
+	reqArgs["endpoint"] = SerializeValue(endpoint)
+	reqArgs["url"] = SerializeValue(url)
+	if displayText != nil {
+		reqArgs["displayText"] = SerializeValue(displayText)
+	}
+	_, err := s.Client().InvokeCapability("Aspire.Hosting.ApplicationModel/ResourceUrlsEditor.addForEndpoint", reqArgs)
+	return err
+}
+
 // TestCallbackContext wraps a handle for Aspire.Hosting.CodeGeneration.Go.Tests/Aspire.Hosting.CodeGeneration.TypeScript.Tests.TestTypes.TestCallbackContext.
 type TestCallbackContext struct {
 	HandleWrapperBase

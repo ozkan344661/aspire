@@ -621,6 +621,10 @@ export interface AddDockerfileOptions {
     stage?: string;
 }
 
+export interface AddForEndpointOptions {
+    displayText?: string;
+}
+
 export interface AddOptions {
     displayText?: string;
 }
@@ -4681,11 +4685,13 @@ export interface ResourceUrlsEditor {
     toJSON(): MarshalledHandle;
     executionContext(): Promise<DistributedApplicationExecutionContext>;
     add(url: string | ReferenceExpression, options?: AddOptions): ResourceUrlsEditorPromise;
+    addForEndpoint(endpoint: Awaitable<EndpointReference>, url: string | ReferenceExpression, options?: AddForEndpointOptions): ResourceUrlsEditorPromise;
 }
 
 export interface ResourceUrlsEditorPromise extends PromiseLike<ResourceUrlsEditor> {
     executionContext(): Promise<DistributedApplicationExecutionContext>;
     add(url: string | ReferenceExpression, options?: AddOptions): ResourceUrlsEditorPromise;
+    addForEndpoint(endpoint: Awaitable<EndpointReference>, url: string | ReferenceExpression, options?: AddForEndpointOptions): ResourceUrlsEditorPromise;
 }
 
 // ============================================================================
@@ -4727,6 +4733,24 @@ class ResourceUrlsEditorImpl implements ResourceUrlsEditor {
         return new ResourceUrlsEditorPromiseImpl(this._addInternal(url, displayText), this._client);
     }
 
+    /** Adds a displayed URL for a specific endpoint */
+    /** @internal */
+    async _addForEndpointInternal(endpoint: Awaitable<EndpointReference>, url: string | ReferenceExpression, displayText?: string): Promise<ResourceUrlsEditor> {
+        endpoint = isPromiseLike(endpoint) ? await endpoint : endpoint;
+        const rpcArgs: Record<string, unknown> = { context: this._handle, endpoint, url };
+        if (displayText !== undefined) rpcArgs.displayText = displayText;
+        await this._client.invokeCapability<void>(
+            'Aspire.Hosting.ApplicationModel/ResourceUrlsEditor.addForEndpoint',
+            rpcArgs
+        );
+        return this;
+    }
+
+    addForEndpoint(endpoint: Awaitable<EndpointReference>, url: string | ReferenceExpression, options?: AddForEndpointOptions): ResourceUrlsEditorPromise {
+        const displayText = options?.displayText;
+        return new ResourceUrlsEditorPromiseImpl(this._addForEndpointInternal(endpoint, url, displayText), this._client);
+    }
+
 }
 
 /**
@@ -4752,6 +4776,11 @@ class ResourceUrlsEditorPromiseImpl implements ResourceUrlsEditorPromise {
     /** Adds a displayed URL */
     add(url: string | ReferenceExpression, options?: AddOptions): ResourceUrlsEditorPromise {
         return new ResourceUrlsEditorPromiseImpl(this._promise.then(obj => obj.add(url, options)), this._client);
+    }
+
+    /** Adds a displayed URL for a specific endpoint */
+    addForEndpoint(endpoint: Awaitable<EndpointReference>, url: string | ReferenceExpression, options?: AddForEndpointOptions): ResourceUrlsEditorPromise {
+        return new ResourceUrlsEditorPromiseImpl(this._promise.then(obj => obj.addForEndpoint(endpoint, url, options)), this._client);
     }
 
 }

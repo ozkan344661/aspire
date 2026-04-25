@@ -13276,6 +13276,19 @@ impl ResourceUrlsEditor {
         let result = self.client.invoke_capability("Aspire.Hosting.ApplicationModel/ResourceUrlsEditor.add", args)?;
         Ok(())
     }
+
+    /// Adds a displayed URL for a specific endpoint
+    pub fn add_for_endpoint(&self, endpoint: &EndpointReference, url: Value, display_text: Option<&str>) -> Result<(), Box<dyn std::error::Error>> {
+        let mut args: HashMap<String, Value> = HashMap::new();
+        args.insert("context".to_string(), self.handle.to_json());
+        args.insert("endpoint".to_string(), endpoint.handle().to_json());
+        args.insert("url".to_string(), serde_json::to_value(&url).unwrap_or(Value::Null));
+        if let Some(ref v) = display_text {
+            args.insert("displayText".to_string(), serde_json::to_value(v).unwrap_or(Value::Null));
+        }
+        let result = self.client.invoke_capability("Aspire.Hosting.ApplicationModel/ResourceUrlsEditor.addForEndpoint", args)?;
+        Ok(())
+    }
 }
 
 /// Wrapper for Aspire.Hosting.CodeGeneration.Rust.Tests/Aspire.Hosting.CodeGeneration.TypeScript.Tests.TestTypes.TestCallbackContext
