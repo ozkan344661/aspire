@@ -155,16 +155,16 @@ If a PR does not clearly fit any specific area, classify it as **Other**.
 
 | Area | Emoji | Signals |
 |------|-------|---------|
-| **AppHost** | 🏗️ | `src/Aspire.Hosting*/` (except Testing), label contains "hosting" |
-| **CLI** | ⌨️ | `src/Aspire.Cli/`, label contains "cli" |
-| **Dashboard** | 📊 | `src/Aspire.Dashboard/`, label contains "dashboard" |
-| **Engineering** | ⚙️ | `eng/`, CI workflows, build infrastructure |
-| **Extensions** | 🧩 | `extension/`, label contains "extension" |
-| **Integrations** | 🔌 | `src/Components/`, label contains "integration" |
-| **Service Discovery** | 🔍 | `src/Aspire.ServiceDiscovery/` or related packages |
-| **Templates** | 📄 | project template files, label contains "template" |
-| **Testing** | 🧪 | `src/Aspire.Hosting.Testing/`, label contains "testing" |
-| **Other** | 📦 | Changes that don't fit any of the above areas |
+| **AppHost** | `:construction:` 🏗️ | `src/Aspire.Hosting*/` (except Testing), label contains "hosting" |
+| **CLI** | `:keyboard:` ⌨️ | `src/Aspire.Cli/`, label contains "cli" |
+| **Dashboard** | `:bar_chart:` 📊 | `src/Aspire.Dashboard/`, label contains "dashboard" |
+| **Engineering** | `:gear:` ⚙️ | `eng/`, CI workflows, build infrastructure |
+| **Extensions** | `:jigsaw:` 🧩 | `extension/`, label contains "extension" |
+| **Integrations** | `:electric_plug:` 🔌 | `src/Components/`, label contains "integration" |
+| **Service Discovery** | `:mag:` 🔍 | `src/Aspire.ServiceDiscovery/` or related packages |
+| **Templates** | `:page_facing_up:` 📄 | project template files, label contains "template" |
+| **Testing** | `:test_tube:` 🧪 | `src/Aspire.Hosting.Testing/`, label contains "testing" |
+| **Other** | `:package:` 📦 | Changes that don't fit any of the above areas |
 
 ### 5b. Determine change type and flags
 
@@ -241,36 +241,35 @@ Group areas alphabetically. Within each area, order change types as:
 Only include change type sub-headings that have at least one entry.
 Only include area sections that have at least one entry.
 
+Change type sub-headings (`####`) must include the area name so that each anchor is
+unique across the issue (e.g., `#### App Host new features`, `#### CLI bug fixes`,
+`#### Dashboard improvements`). The slug GitHub generates for
+`#### App Host new features` is `app-host-new-features`.
+
 After the header, add a **Table of Contents** section with a link to each area.
-Use the area emoji and name as the link text, and GitHub’s auto-generated heading
-anchor as the target. Place an HTML anchor `<a id="areaname"></a>` on the line
-before each area heading to ensure reliable linking. Use the lowercase area name
-(without emoji) as the id, e.g. `apphost`, `cli`, `dashboard`. **Use literal angle
-brackets** in the anchor tags — do not escape them or replace `<` `>` with other
-characters. Example: `- [🏗️ AppHost](#apphost)`.
+Use emoji shortcodes (e.g., `:construction:`) in **both** the TOC link text and the
+heading itself so GitHub's auto-generated heading anchor includes the shortcode name.
+This produces predictable, reliable slugs. Do not use Unicode emoji pictures in
+headings or TOC links — always use the colon-delimited shortcode form.
+Example: `- [:construction: AppHost](#construction-apphost)` links to
+heading `## :construction: AppHost`.
 
 After the Table of Contents, add a **What's New** section that lists only **new
 features** whose most recent associated PR was merged within the **last 7 days**
-(relative to the current run time). Each item is a single link line using the format:
-`- [<date> - <Area> - <Name>](#<last-pr-number>)`
+(relative to the current run time). Sort entries **newest to oldest** by merge date.
+Each item is a link to the area's "new features" sub-heading, using the format:
+`- [<date> — <Area> new features - <Name>](#<area-slug>-new-features) (#<last-pr-number>)`
 where `<date>` is the merge date of the last PR in `YYYY-M-D` format (no leading
-zeroes on month/day), `<Area>` is the area name, and `<last-pr-number>` is the
-number of the last PR associated with the entry (without `#`). Omit the What's New
+zeroes on month/day), `<Area> new features` matches the `####` sub-heading text,
+`<Name>` is the changelog entry name, `<area-slug>-new-features` is the
+GitHub-auto-generated anchor for that sub-heading
+(e.g., `#app-host-new-features`, `#cli-new-features`), and `<last-pr-number>` is the
+PR number prefixed with `#` (which GitHub auto-links to the PR). Omit the What's New
 section entirely if there are no new features in the last 7 days.
 
 Under each area heading, add a one-line **summary** counting the entries per change
 type, e.g. `2 new features, 1 improvement` or `3 bug fixes`. Use singular form
 for counts of 1 (`1 new feature`, `1 bug fix`, `1 improvement`).
-
-Each changelog entry must include an HTML anchor immediately after the bold title
-on the same line so the What's New section can link to it. The anchor uses the
-number of the last associated PR. **Use literal angle brackets** — do not escape
-them and do not replace `<` `>` with `(` `)` or any other characters.
-The exact format is (example for PR 1235):
-
-    <a id="1235"></a>
-
-This produces: `- **🧭 Feature name** <a id="1235"></a>`
 
 Use this exact format:
 
@@ -282,62 +281,56 @@ Use this exact format:
 
 ## Table of Contents
 
-- [🏗️ AppHost](#apphost)
-- [⌨️ CLI](#cli)
-- [📊 Dashboard](#dashboard)
+- [:construction: AppHost](#construction-apphost)
+- [:keyboard: CLI](#keyboard-cli)
+- [:bar_chart: Dashboard](#bar_chart-dashboard)
 
 ## What's New
 
-- [2026-4-22 - AppHost - Feature name](#1235)
-- [2026-4-23 - AppHost - Another feature](#1236)
+- [2026-4-22 — App Host new features - Feature name](#app-host-new-features) (#1235)
+- [2026-4-20 — App Host new features - Another feature](#app-host-new-features) (#1236)
 
-<a id="apphost"></a>
-
-## 🏗️ AppHost
+## :construction: AppHost
 
 2 new features, 1 improvement
 
-#### New features
+#### App Host new features
 
-- **🧭 Feature name** <a id="1235"></a>
+- **🧭 Feature name**
   Brief user-facing description
   Changes: #1234, #1235
   ⚠️ **Breaking change**
   📝 **Documentation required**
 
-- **🚀 Another feature** <a id="1236"></a>
+- **🚀 Another feature**
   What this means for users
   Changes: #1236
   📝 **Documentation required**
 
-#### Improvements
+#### App Host improvements
 
-- **⚡ Performance boost** <a id="1238"></a>
+- **⚡ Performance boost**
   Faster startup for container resources
   Changes: #1238
 
-<a id="cli"></a>
-
-## ⌨️ CLI
+## :keyboard: CLI
 
 1 bug fix
 
-#### Bug fixes
+#### CLI bug fixes
 
-- **🔧 Fix crash on init** <a id="1239"></a>
+- **🔧 Fix crash on init**
   Resolved a crash when running aspire init in an empty directory
   Changes: #1239
   ⚠️ **Breaking change**
 
-<a id="dashboard"></a>
-
-## 📊 Dashboard
+## :bar_chart: Dashboard
 
 1 improvement
 
-#### Improvements
+#### Dashboard improvements
 
-- **🎨 Dashboard improvement** <a id="1237"></a>
+- **🎨 Dashboard improvement**
   Description of the change
   Changes: #1237
 
