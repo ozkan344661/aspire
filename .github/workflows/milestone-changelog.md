@@ -249,20 +249,15 @@ anchor as the target. Emoji headings produce anchors with a leading hyphen, e.g.
 After the Table of Contents, add a **What's New** section that lists only **new
 features** whose most recent associated PR was merged within the **last 7 days**
 (relative to the current run time). Each item is a single link line using the format:
-`- [<date> - <Area> - <Name>](#<last-pr-number>)`
+`- [<date> - <Area> - <Name>](https://github.com/microsoft/aspire/pull/<last-pr-number>)`
 where `<date>` is the merge date of the last PR in `YYYY-M-D` format (no leading
 zeroes on month/day), `<Area>` is the area name, and `<last-pr-number>` is the
-number of the last PR associated with the entry (without `#`). Omit the What's New
+number of the last PR associated with the entry. Omit the What's New
 section entirely if there are no new features in the last 7 days.
 
 Under each area heading, add a one-line **summary** counting the entries per change
 type, e.g. `2 new features, 1 improvement` or `3 bug fixes`. Use singular form
 for counts of 1 (`1 new feature`, `1 bug fix`, `1 improvement`).
-
-Each changelog entry must include an HTML anchor `<a id="<last-pr-number>"></a>`
-immediately after the bold title line (on the same line), where `<last-pr-number>`
-is the number of the last PR associated with the entry (without `#`). This enables
-the What's New section to link directly to individual entries.
 
 Use this exact format:
 
@@ -280,8 +275,8 @@ Use this exact format:
 
 ## What's New
 
-- [2026-4-22 - AppHost - Feature name](#1235)
-- [2026-4-23 - AppHost - Another feature](#1236)
+- [2026-4-22 - AppHost - Feature name](https://github.com/microsoft/aspire/pull/1235)
+- [2026-4-23 - AppHost - Another feature](https://github.com/microsoft/aspire/pull/1236)
 
 ## 🏗️ AppHost
 
@@ -289,20 +284,20 @@ Use this exact format:
 
 #### New features
 
-- **🧭 Feature name** <a id="1235"></a>
+- **🧭 Feature name**
   Brief user-facing description
   Changes: #1234, #1235
   ⚠️ **Breaking change**
   📝 **Documentation required**
 
-- **🚀 Another feature** <a id="1236"></a>
+- **🚀 Another feature**
   What this means for users
   Changes: #1236
   📝 **Documentation required**
 
 #### Improvements
 
-- **⚡ Performance boost** <a id="1238"></a>
+- **⚡ Performance boost**
   Faster startup for container resources
   Changes: #1238
 
@@ -312,7 +307,7 @@ Use this exact format:
 
 #### Bug fixes
 
-- **🔧 Fix crash on init** <a id="1239"></a>
+- **🔧 Fix crash on init**
   Resolved a crash when running aspire init in an empty directory
   Changes: #1239
   ⚠️ **Breaking change**
@@ -323,7 +318,7 @@ Use this exact format:
 
 #### Improvements
 
-- **🎨 Dashboard improvement** <a id="1237"></a>
+- **🎨 Dashboard improvement**
   Description of the change
   Changes: #1237
 
