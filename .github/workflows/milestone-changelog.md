@@ -244,7 +244,7 @@ Only include area sections that have at least one entry.
 After the header, add a **Table of Contents** section with a link to each area.
 Use the area emoji and name as the link text, and GitHub’s auto-generated heading
 anchor as the target. Emoji headings produce anchors with a leading hyphen, e.g.
-`- [🏗️ AppHost](#%EF%B8%8F-apphost)`.
+`- [🏗️ AppHost](#-apphost)`.
 
 Under each area heading, add a one-line **summary** counting the entries per change
 type, e.g. `2 new features, 1 improvement` or `3 bug fixes`. Use singular form
@@ -260,8 +260,8 @@ Use this exact format:
 
 ## Table of Contents
 
-- [🏗️ AppHost](#%EF%B8%8F-apphost)
-- [⌨️ CLI](#%EF%B8%8F-cli)
+- [🏗️ AppHost](#-apphost)
+- [⌨️ CLI](#-cli)
 - [📊 Dashboard](#-dashboard)
 
 ## 🏗️ AppHost
