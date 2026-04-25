@@ -243,8 +243,8 @@ Only include area sections that have at least one entry.
 
 After the header, add a **Table of Contents** section with a link to each area.
 Use the area emoji and name as the link text, and GitHub’s auto-generated heading
-anchor as the target. Emoji headings produce anchors with a leading hyphen, e.g.
-`- [🏗️ AppHost](#-apphost)`.
+anchor as the target. GitHub strips emoji from heading anchors, e.g.
+`- [🏗️ AppHost](#apphost)`.
 
 After the Table of Contents, add a **What's New** section that lists only **new
 features** whose most recent associated PR was merged within the **last 7 days**
@@ -279,9 +279,9 @@ Use this exact format:
 
 ## Table of Contents
 
-- [🏗️ AppHost](#-apphost)
-- [⌨️ CLI](#-cli)
-- [📊 Dashboard](#-dashboard)
+- [🏗️ AppHost](#apphost)
+- [⌨️ CLI](#cli)
+- [📊 Dashboard](#dashboard)
 
 ## What's New
 
