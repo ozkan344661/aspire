@@ -242,12 +242,9 @@ Only include change type sub-headings that have at least one entry.
 Only include area sections that have at least one entry.
 
 After the header, add a **Table of Contents** section with a link to each area.
-Use the area emoji and name as the link text, and the lowercase area name
-(without emoji, spaces replaced with hyphens) as the anchor, e.g.
-`- [🏗️ AppHost](#apphost)`.
-
-Before each area heading, add an HTML anchor tag `<a id="areaname"></a>` to ensure
-reliable linking regardless of how GitHub generates heading anchors for emoji.
+Use the area emoji and name as the link text, and GitHub’s auto-generated heading
+anchor as the target. Emoji headings produce anchors with a leading hyphen, e.g.
+`- [🏗️ AppHost](#%EF%B8%8F-apphost)`.
 
 Under each area heading, add a one-line **summary** counting the entries per change
 type, e.g. `2 new features, 1 improvement` or `3 bug fixes`. Use singular form
@@ -263,11 +260,10 @@ Use this exact format:
 
 ## Table of Contents
 
-- [🏗️ AppHost](#apphost)
-- [⌨️ CLI](#cli)
-- [📊 Dashboard](#dashboard)
+- [🏗️ AppHost](#%EF%B8%8F-apphost)
+- [⌨️ CLI](#%EF%B8%8F-cli)
+- [📊 Dashboard](#-dashboard)
 
-<a id="apphost"></a>
 ## 🏗️ AppHost
 
 2 new features, 1 improvement
@@ -291,7 +287,6 @@ Use this exact format:
   Faster startup for container resources
   Changes: #1238
 
-<a id="cli"></a>
 ## ⌨️ CLI
 
 1 bug fix
@@ -303,7 +298,6 @@ Use this exact format:
   Changes: #1239
   ⚠️ **Breaking change**
 
-<a id="dashboard"></a>
 ## 📊 Dashboard
 
 1 improvement
