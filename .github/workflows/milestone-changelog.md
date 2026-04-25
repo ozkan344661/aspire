@@ -1,7 +1,7 @@
 ---
 description: |
   Generates and maintains a changelog for a configured Aspire milestone by
-  analyzing merged pull requests. Runs daily and can be triggered manually.
+  analyzing merged pull requests. Can be triggered manually.
   Creates or updates a single GitHub issue titled "[<milestone>] Change log"
   with a Table of Contents and What's New section. Each product area has its
   own comment on the issue, created even when empty, so the TOC can link
@@ -10,8 +10,8 @@ description: |
 
 # ──────────────────────────────────────────────────────────
 # To change the target milestone, update every hard-coded
-# milestone reference in this file: the safe-outputs
-# title-prefix values, the issue title, cache key, and all
+# milestone reference in this file: the issue title,
+# cache key, and all
 # milestone references in the prompt body below, then run:
 #   gh aw compile
 # ──────────────────────────────────────────────────────────
@@ -23,7 +23,7 @@ if: github.repository_owner == 'microsoft'
 
 permissions:
   contents: read
-  issues: write
+  issues: read
   pull-requests: read
 
 network: defaults
@@ -43,10 +43,8 @@ safe-outputs:
     labels: [changelog]
   update-issue:
     title-prefix: "[13.3] "
-  add-issue-comment:
-    title-prefix: "[13.3] "
-  update-issue-comment:
-    title-prefix: "[13.3] "
+  add-comment:
+    issues: true
 
 timeout-minutes: 15
 ---
@@ -91,8 +89,9 @@ the comment), and a human-readable name.
 Search for an **open** issue in this repository whose title is exactly `[13.3] Change log`.
 
 - **If found**: this is the existing changelog issue. Read its current body and **all** comments.
-- **If not found**: create it in this step using the `create-issue` safe output with
-  title `[13.3] Change log` and a minimal placeholder body (it will be updated in Step 8).
+- **If not found**: create it using the `create_issue` GitHub API tool with
+  title `[13.3] Change log`, the `changelog` label, and a minimal placeholder body
+  (it will be updated in Step 8).
 
 ## Step 2: Ensure area comments exist
 
@@ -100,8 +99,8 @@ For each of the 10 areas listed above, check whether a comment already exists on
 changelog issue whose body starts with the marker `<!-- changelog-area: <area-id> -->`.
 
 - **If found**: record the comment ID for that area.
-- **If not found**: create a new comment using the `add-issue-comment` safe output with
-  the following body:
+- **If not found**: create a new comment using the `add_issue_comment` GitHub API tool
+  with the following body:
 
 ```
 <!-- changelog-area: <area-id> -->
@@ -283,7 +282,8 @@ Change type sub-headings (`####`) must include the area name so that each headin
 descriptive (e.g., `#### App Host new features`, `#### CLI bug fixes`,
 `#### Dashboard improvements`).
 
-Update each area comment using the `update-issue-comment` safe output. Use this format:
+Update each area comment using the `update_issue_comment` GitHub API tool,
+passing the comment ID recorded in Step 2 and the new body. Use this format:
 
 ```
 <!-- changelog-area: apphost -->
@@ -330,7 +330,7 @@ areas with no entries (use `No changes yet.` instead).
 Build the issue body with only the **Table of Contents** and **What's New** section.
 Use the comment IDs recorded in Step 2 to construct links.
 
-Update the issue body using the `update-issue` safe output. Use this format:
+Update the issue body using the `update_issue` GitHub API tool. Use this format:
 
 ```markdown
 # [13.3] Change log
