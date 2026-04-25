@@ -105,12 +105,14 @@ conditions are true:
 3. The changed file paths don't align with what the title/body describe (e.g., title says
    "Dashboard fix" but files are in `src/Aspire.Cli/`).
 
-When reading the diff, **ignore generated files** — files matching these patterns:
+When reading the diff, **ignore generated files and playground app changes** — files matching these patterns:
 - `*/api/*.cs` (public API surface files)
 - `*.Designer.cs`
 - `*.xlf`
 - `package-lock.json`
 - `*.g.cs`
+- `*.Generated.cs`
+- `playground/*`
 
 For PRs with **more than 10,000** changed lines, skip the diff and rely on the title,
 body, labels, and file paths only.
@@ -244,6 +246,9 @@ Use the area emoji and name as the link text, and the lowercase area name
 (without emoji, spaces replaced with hyphens) as the anchor, e.g.
 `- [🏗️ AppHost](#apphost)`.
 
+Before each area heading, add an HTML anchor tag `<a id="areaname"></a>` to ensure
+reliable linking regardless of how GitHub generates heading anchors for emoji.
+
 Under each area heading, add a one-line **summary** counting the entries per change
 type, e.g. `2 new features, 1 improvement` or `3 bug fixes`. Use singular form
 for counts of 1 (`1 new feature`, `1 bug fix`, `1 improvement`).
@@ -262,6 +267,7 @@ Use this exact format:
 - [⌨️ CLI](#cli)
 - [📊 Dashboard](#dashboard)
 
+<a id="apphost"></a>
 ## 🏗️ AppHost
 
 2 new features, 1 improvement
@@ -270,21 +276,22 @@ Use this exact format:
 
 - **🧭 Feature name**
   Brief user-facing description
-  Changes #1234, #1235
+  Changes: #1234, #1235
   ⚠️ **Breaking change**
   📝 **Documentation required**
 
 - **🚀 Another feature**
   What this means for users
-  Changes (#1236)
+  Changes: #1236
   📝 **Documentation required**
 
 #### Improvements
 
 - **⚡ Performance boost**
   Faster startup for container resources
-  Changes (#1238)
+  Changes: #1238
 
+<a id="cli"></a>
 ## ⌨️ CLI
 
 1 bug fix
@@ -293,9 +300,10 @@ Use this exact format:
 
 - **🔧 Fix crash on init**
   Resolved a crash when running aspire init in an empty directory
-  Changes (#1239)
+  Changes: #1239
   ⚠️ **Breaking change**
 
+<a id="dashboard"></a>
 ## 📊 Dashboard
 
 1 improvement
@@ -304,7 +312,7 @@ Use this exact format:
 
 - **🎨 Dashboard improvement**
   Description of the change
-  (#1237)
+  Changes: #1237
 
 ---
 
@@ -333,7 +341,7 @@ Write the current UTC timestamp (ISO 8601) to cache-memory with the key
 - **Always preserve comments** — they are the feedback channel. Never close and recreate
   the issue.
 - If no new PRs were found since the last run, update only the "Last updated" timestamp
-  in the issue body. Do not modify the table.
+  in the issue body. Do not modify the existing entries.
 - Keep descriptions concise — this is a changelog, not release notes prose.
-- If the milestone has no merged PRs at all yet, still create the issue with an empty
-  table so the team can start adding manual entries via comments.
+- If the milestone has no merged PRs at all yet, still create the issue with
+  `No changes recorded yet.` so the team can start adding manual entries via comments.
