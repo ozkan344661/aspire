@@ -91,8 +91,33 @@ Search for pull requests in this repository that match **all** of these criteria
 typically automated dependency bumps or infrastructure changes that do not belong in
 a user-facing changelog.
 
-For each remaining PR collect: number, title, author, body/description, labels, and
-the list of changed files.
+For each remaining PR collect: number, title, author, body/description, labels, the
+list of changed files, and the total number of changed lines (additions + deletions).
+
+### 3a. Read the PR diff when needed
+
+For PRs with **10,000 or fewer** total changed lines, read the diff if **any** of these
+conditions are true:
+
+1. The PR title is vague or generic (e.g., "Fix", "Update", "Cleanup", "Address feedback",
+   "Misc changes").
+2. The PR body/description is empty or contains only a template with no filled-in details.
+3. The changed file paths don't align with what the title/body describe (e.g., title says
+   "Dashboard fix" but files are in `src/Aspire.Cli/`).
+
+When reading the diff, **ignore generated files** — files matching these patterns:
+- `*/api/*.cs` (public API surface files)
+- `*.Designer.cs`
+- `*.xlf`
+- `package-lock.json`
+- `*.g.cs`
+
+For PRs with **more than 10,000** changed lines, skip the diff and rely on the title,
+body, labels, and file paths only.
+
+Use the diff to write a more accurate changelog name and description. If the diff
+reveals the change is not notable (e.g., pure refactoring despite a misleading title),
+apply the filtering rules from Step 5e.
 
 ## Step 4: Process editorial feedback from comments
 
