@@ -214,6 +214,15 @@ Group areas alphabetically. Within each area, order change types as:
 Only include change type sub-headings that have at least one entry.
 Only include area sections that have at least one entry.
 
+After the header, add a **Table of Contents** section with a link to each area.
+Use the area emoji and name as the link text, and the lowercase area name
+(without emoji, spaces replaced with hyphens) as the anchor, e.g.
+`- [🏗️ AppHost](#apphost)`.
+
+Under each area heading, add a one-line **summary** counting the entries per change
+type, e.g. `2 new features, 1 improvement` or `3 bug fixes`. Use singular form
+for counts of 1 (`1 new feature`, `1 bug fix`, `1 improvement`).
+
 Use this exact format:
 
 ```markdown
@@ -222,7 +231,15 @@ Use this exact format:
 > Last updated: <current date and time in UTC>
 > PRs analyzed through: <end of time window in UTC>
 
+## Table of Contents
+
+- [🏗️ AppHost](#apphost)
+- [⌨️ CLI](#cli)
+- [📊 Dashboard](#dashboard)
+
 ## 🏗️ AppHost
+
+2 new features, 1 improvement
 
 #### New features
 
@@ -245,6 +262,8 @@ Use this exact format:
 
 ## ⌨️ CLI
 
+1 bug fix
+
 #### Bug fixes
 
 - **🔧 Fix crash on init**
@@ -253,6 +272,8 @@ Use this exact format:
   ⚠️ **Breaking change**
 
 ## 📊 Dashboard
+
+1 improvement
 
 #### Improvements
 
