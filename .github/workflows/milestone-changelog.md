@@ -243,8 +243,11 @@ Only include area sections that have at least one entry.
 
 After the header, add a **Table of Contents** section with a link to each area.
 Use the area emoji and name as the link text, and GitHub’s auto-generated heading
-anchor as the target. GitHub strips emoji from heading anchors, e.g.
-`- [🏗️ AppHost](#apphost)`.
+anchor as the target. Place an HTML anchor `<a id="areaname"></a>` on the line
+before each area heading to ensure reliable linking. Use the lowercase area name
+(without emoji) as the id, e.g. `apphost`, `cli`, `dashboard`. **Use literal angle
+brackets** in the anchor tags — do not escape them or replace `<` `>` with other
+characters. Example: `- [🏗️ AppHost](#apphost)`.
 
 After the Table of Contents, add a **What's New** section that lists only **new
 features** whose most recent associated PR was merged within the **last 7 days**
@@ -288,6 +291,8 @@ Use this exact format:
 - [2026-4-22 - AppHost - Feature name](#1235)
 - [2026-4-23 - AppHost - Another feature](#1236)
 
+<a id="apphost"></a>
+
 ## 🏗️ AppHost
 
 2 new features, 1 improvement
@@ -311,6 +316,8 @@ Use this exact format:
   Faster startup for container resources
   Changes: #1238
 
+<a id="cli"></a>
+
 ## ⌨️ CLI
 
 1 bug fix
@@ -321,6 +328,8 @@ Use this exact format:
   Resolved a crash when running aspire init in an empty directory
   Changes: #1239
   ⚠️ **Breaking change**
+
+<a id="dashboard"></a>
 
 ## 📊 Dashboard
 
