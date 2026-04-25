@@ -3,7 +3,7 @@ description: |
   Generates and maintains a changelog for a configured Aspire milestone by
   analyzing merged pull requests. Runs daily and can be triggered manually.
   Creates or updates a single GitHub issue titled "[<milestone>] Change log"
-  with a table of new features and notable bug fixes. Comments on the
+  with a list of new features and notable bug fixes. Comments on the
   changelog issue serve as editorial feedback (e.g., exclude a change,
   rename an entry, merge entries).
 
@@ -184,10 +184,10 @@ Then determine whether either of these optional flags applies:
 | **Docs required** | 📝 | Change needs documentation on aspire.dev (new feature, changed behavior, new config options) |
 
 A change can have zero, one, or both flags. When present, show each flag on its own
-indented line below the PR numbers:
+indented line below the Changes line:
 
 ```
-  (#1234)
+  Changes: #1234
   ⚠️ **Breaking change**
   📝 **Documentation required**
 ```
@@ -259,7 +259,7 @@ Under each area heading, add a one-line **summary** counting the entries per cha
 type, e.g. `2 new features, 1 improvement` or `3 bug fixes`. Use singular form
 for counts of 1 (`1 new feature`, `1 bug fix`, `1 improvement`).
 
-Each changelog entry must include an HTML anchor `<a name="<last-pr-number>"></a>`
+Each changelog entry must include an HTML anchor `<a id="<last-pr-number>"></a>`
 immediately after the bold title line (on the same line), where `<last-pr-number>`
 is the number of the last PR associated with the entry (without `#`). This enables
 the What's New section to link directly to individual entries.
@@ -289,20 +289,20 @@ Use this exact format:
 
 #### New features
 
-- **🧭 Feature name** <a name="1235"></a>
+- **🧭 Feature name** <a id="1235"></a>
   Brief user-facing description
   Changes: #1234, #1235
   ⚠️ **Breaking change**
   📝 **Documentation required**
 
-- **🚀 Another feature** <a name="1236"></a>
+- **🚀 Another feature** <a id="1236"></a>
   What this means for users
   Changes: #1236
   📝 **Documentation required**
 
 #### Improvements
 
-- **⚡ Performance boost** <a name="1238"></a>
+- **⚡ Performance boost** <a id="1238"></a>
   Faster startup for container resources
   Changes: #1238
 
@@ -312,7 +312,7 @@ Use this exact format:
 
 #### Bug fixes
 
-- **🔧 Fix crash on init** <a name="1239"></a>
+- **🔧 Fix crash on init** <a id="1239"></a>
   Resolved a crash when running aspire init in an empty directory
   Changes: #1239
   ⚠️ **Breaking change**
@@ -323,7 +323,7 @@ Use this exact format:
 
 #### Improvements
 
-- **🎨 Dashboard improvement** <a name="1237"></a>
+- **🎨 Dashboard improvement** <a id="1237"></a>
   Description of the change
   Changes: #1237
 
